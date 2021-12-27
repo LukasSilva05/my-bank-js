@@ -7,7 +7,7 @@ test('teste saque valor igual ao saldo', () => {
     cliente01.cpf = '11100099954';
     var contaDoCliente01 = new Conta();
     contaDoCliente01.agencia = 1101;
-    contaDoCliente01.numero = 2001;    
+    contaDoCliente01.numero = 2001;
     contaDoCliente01.cliente = cliente01;
 
     contaDoCliente01.depositar(100.0);
@@ -22,7 +22,7 @@ test('teste saque valor maior que o saldo', () => {
     cliente01.cpf = '11100099954';
     var contaDoCliente01 = new Conta();
     contaDoCliente01.agencia = 1101;
-    contaDoCliente01.numero = 2001;    
+    contaDoCliente01.numero = 2001;
     contaDoCliente01.cliente = cliente01;
 
     contaDoCliente01.depositar(100.0);
@@ -37,7 +37,7 @@ test('teste deposito valor maior que o saldo', () => {
     cliente01.cpf = '11100099954';
     var contaDoCliente01 = new Conta();
     contaDoCliente01.agencia = 1101;
-    contaDoCliente01.numero = 2001;    
+    contaDoCliente01.numero = 2001;
     contaDoCliente01.cliente = cliente01;
 
     contaDoCliente01.depositar(200.0);
@@ -51,7 +51,7 @@ test('teste deposito valor negativo', () => {
     cliente01.cpf = '11100099954';
     var contaDoCliente01 = new Conta();
     contaDoCliente01.agencia = 1101;
-    contaDoCliente01.numero = 2001;    
+    contaDoCliente01.numero = 2001;
     contaDoCliente01.cliente = cliente01;
 
     contaDoCliente01.depositar(-200.0);
