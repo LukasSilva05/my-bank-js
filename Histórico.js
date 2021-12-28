@@ -12,4 +12,4 @@ class Historico {
     }
 }
 
-module.exports = Historico
+module.exports = Historico;

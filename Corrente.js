@@ -6,4 +6,4 @@ class Corrente {
     }
 }
 
-module.exports = Corrente
+module.exports = Corrente;

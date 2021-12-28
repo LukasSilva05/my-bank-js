@@ -12,4 +12,4 @@ class Agencia {
     }
 }
 
-module.exports = Agencia
+module.exports = Agencia;

@@ -6,4 +6,4 @@ class Poupanca {
     }
 }
 
-module.exports = Poupanca
+module.exports = Poupanca;
