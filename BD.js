@@ -9,9 +9,9 @@ class BD {
         this.contas.set(conta.numero, conta)
     }
 
-    lerConta(conta) {
-        if (this.contas.has(conta.numero)) {
-            return this.contas.get(conta.numero);
+    lerConta(numero) {
+        if (this.contas.has(numero)) {
+            return this.contas.get(numero);
         }
     }
 
@@ -19,7 +19,7 @@ class BD {
         console.log('Número de contas: ' + this.contas.size)
         console.log('Contas: ');
         for (var [key, value] of this.contas) {
-            console.log(key + ' - ' + value.cliente.nome);
+            console.log(key + ' - ' + value.cliente.nome + ' - ' + value.cliente.cpf);
         }
     }
 
