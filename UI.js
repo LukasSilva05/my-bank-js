@@ -20,6 +20,7 @@ function exibeMenu() {
     console.log("3 - Depositar");
     console.log("4 - Cadastrar Conta");
     console.log("5 - Listar Contas");
+    console.log("6 - Transferir")
     console.log("9 - Sair");
 }
 
@@ -29,6 +30,7 @@ function escolheOpcao(opcao) {
         case 1:
             console.log('Implementar extrato.');
             break;
+
         case 2:
             console.log('Implementar saque.');
             break;
@@ -56,9 +58,15 @@ function escolheOpcao(opcao) {
             console.log('Listando contas: ');
             bd.listarContas();
             break;
+
+        case 6:
+            console.log('Implementar transferir.')
+            break;
+
         case 9:
             console.log('Saindo da aplicação.');
             break;
+
         default:
             console.log("Opção inválida");
     }
