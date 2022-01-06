@@ -89,11 +89,6 @@ function escolheOpcao(opcao) {
                 console.log("\nEsse telefone não é válido!")
                 novoCliente.fone = prompt('Informe o telefone novamente: ');
             }
-            novoCliente.endereco = prompt('informe o endereço: ');
-            while (novoCliente.endereco == "") {
-                console.log("\nEsse endereço não válido!")
-                novoCliente.endereco = prompt('informe o endereço novamente: ');
-            }
 
             const novaConta = new Conta();
             novaConta.agencia = Number(prompt('Informe a agencia: '));
