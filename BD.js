@@ -19,7 +19,7 @@ class BD {
         console.log('Número de contas: ' + this.contas.size)
         console.log('Contas: ');
         for (var [key, value] of this.contas) {
-            console.log(key + ' - ' + value.cliente.nome + ' - ' + value.cliente.cpf);
+            console.log(`Nº: ${key} | Nome: ${value.cliente.nome} | CPF: ${value.cliente.cpf} | Fone: ${value.cliente.fone}`)
         }
     }
 

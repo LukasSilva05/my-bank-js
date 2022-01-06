@@ -14,14 +14,14 @@ function iniciar() {
 }
 
 function exibeMenu() {
-    console.log("\n\n\t Escolha a opção desejada");
-    console.log("1 - Consultar Extrato");
+    console.log("\n-----------------------------------------------------------\n\n\t\t Escolha a opção desejada");
+    console.log("\n1 - Consultar Extrato");
     console.log("2 - Sacar");
     console.log("3 - Depositar");
     console.log("4 - Cadastrar Conta");
     console.log("5 - Listar Contas");
     console.log("6 - Transferir");
-    console.log("9 - Sair");
+    console.log("9 - Sair\n");
 }
 
 function escolheOpcao(opcao) {
@@ -30,30 +30,74 @@ function escolheOpcao(opcao) {
         case 1:
             numConta = Number(prompt('Informe o número da conta: '))
             conta = bd.lerConta(numConta);
-            console.log(`Saldo: ${conta._saldo}`)
+            console.log(`\nSaldo da conta: R$ ${conta._saldo}`)
             break;
 
         case 2:
-            console.log('Implementar saque.');
+            console.log("\nSacar.\n-----------------------------------------------------------")
+            numConta = Number(prompt('Informe o número da conta: '))
+            conta = bd.lerConta(numConta);
+            valor = Number(prompt('Informe a quantia do saque: R$ '))
+            while (valor > conta._saldo) {
+                console.log("\nQuantia inválida!")
+                valor = Number(prompt('Informe a quantia do saque novamente: R$ '))
+            }
+            conta._saldo = conta._saldo - valor
+            console.log("\nSaque concluído!")
+            console.log(`\nSaldo atual: R$ ${conta._saldo}`)
             break;
 
         case 3:
-            console.log('Implementar deposito.');
+            console.log("\nDepositar.\n-----------------------------------------------------------")
+            numConta = Number(prompt('Informe o número da conta: '))
+            conta = bd.lerConta(numConta);
+            valor = Number(prompt('Informe a quantia: R$ '))
+            while (valor <= 0) {
+                console.log("\nQuantia inválido!")
+                valor = Number(prompt('Informe a quantia novamente: R$ '))
+            }
+            conta._saldo = conta._saldo + valor
+            console.log("\nQuantia Depositada!")
+            console.log(`\nSaldo atual: R$ ${conta._saldo}`)
             break;
 
         case 4:
-            console.log("Cadastrar nova conta.");
+            console.log("\nCadastrar nova conta.\n-----------------------------------------------------------");
 
             const novoCliente = new Cliente();
             novoCliente.nome = prompt('Informe o nome: ');
+            while (novoCliente.nome == "" || Number(novoCliente.nome) || novoCliente.nome.length < 2) {
+                console.log("\nEsse nome não é válido!")
+                novoCliente.nome = prompt('Informe o nome novamente: ');
+            }
             novoCliente.cpf = prompt('Informe o CPF: ');
+            while (novoCliente.cpf == "" || isNaN(novoCliente.cpf) || novoCliente.cpf.length > 11) {
+                console.log("\nEsse CPF não é válido!")
+                novoCliente.cpf = prompt('Informe o CPF novamente: ');
+            }
             novoCliente.fone = prompt('Informe o telefone: ');
+            while (novoCliente.fone == "" || isNaN(novoCliente.fone) || novoCliente.fone.length > 11) {
+                console.log("\nEsse telefone não é válido!")
+                novoCliente.fone = prompt('Informe o telefone novamente: ');
+            }
             novoCliente.endereco = prompt('informe o endereço: ');
+            while (novoCliente.endereco == "" || Number(novoCliente.endereco)) {
+                console.log("\nEsse endereço não válido!")
+                novoCliente.endereco = prompt('informe o endereço novamente: ');
+            }
 
             const novaConta = new Conta();
             novaConta.agencia = Number(prompt('Informe a agencia: '));
+            while (novaConta.agencia == "" || isNaN(novaConta.agencia) || novaConta.agencia.length > 3) {
+                console.log("\nEssa agência não é válida!")
+                novaConta.agencia = Number(prompt('Informe a agencia novamente: '));
+            }
             novaConta.numero = Number(prompt('Informe o número da conta: '));
-            novaConta._saldo = Number(prompt('Informe o saldo inicial: '))
+            while (novaConta.numero == "" || isNaN(novaConta.numero)) {
+                console.log("\nEsse número não é válido!")
+                novaConta.numero = Number(prompt('Informe o número da conta novamente: '));
+            }
+            novaConta._saldo = 0.0
             novaConta.cliente = novoCliente;
 
             bd.cadastrarConta(novaConta);
@@ -62,20 +106,20 @@ function escolheOpcao(opcao) {
             break;
 
         case 5:
-            console.log('Listando contas: ');
+            console.log('\n-----------------------------------------------------------\nListando contas: \n');
             bd.listarContas();
             break;
 
         case 6:
-            console.log('Implementar transferir.')
+            console.log('\nTransferir.\n-----------------------------------------------------------')
             break;
 
         case 9:
-            console.log('Saindo da aplicação.');
+            console.log('\nSaindo da aplicação. \n-----------------------------------------------------------');
             break;
 
         default:
-            console.log("Opção inválida");
+            console.log("\nOpção inválida.");
     }
 }
 
