@@ -14,8 +14,8 @@ function iniciar() {
 }
 
 function exibeMenu() {
-    console.log("\n-----------------------------------------------------------\n\n\t\t Escolha a opção desejada");
-    console.log("\n1 - Consultar Extrato");
+    console.log("\n-----------------------------------------------------------\n\n\t\t Escolha a opção desejada\n");
+    console.log("1 - Consultar Extrato");
     console.log("2 - Sacar");
     console.log("3 - Depositar");
     console.log("4 - Cadastrar Conta");
