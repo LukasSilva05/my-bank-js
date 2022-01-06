@@ -33,9 +33,7 @@ class Conta {
     }
 
     transferencia(valor) {
-        if (valor <= 0) {
-            console.log("\nQuantia inválida!")
-        } else {
+        if (valor > 0) {
             this._saldo = this._saldo + valor;
         }
     }
@@ -43,12 +41,12 @@ class Conta {
     transferir(valor, contaDestino) {
         if (this._saldo <= valor || valor < 0) {
             console.log("\nQuantia inválida!")
-            console.log(`\nSaldo atual: R$ ${conta._saldo}`)
+            console.log(`\nSaldo atual: R$ ${conta1._saldo}`)
         } else {
             this._saldo -= valor;
             contaDestino.transferencia(valor);
             console.log("\nTransferência efetuada com sucesso!")
-            console.log(`\nSaldo atual: R$ ${conta._saldo}`)
+            console.log(`\nSaldo atual: R$ ${conta1._saldo}`)
         }
     }
 }
