@@ -34,11 +34,11 @@ function escolheOpcao(opcao) {
             break;
 
         case 2:
-            console.log("\nSacar.\n-----------------------------------------------------------")
+            console.log("\nSacar.\n-----------------------------------------------------------\n")
             numConta = Number(prompt('Informe o número da conta: '))
             conta = bd.lerConta(numConta);
             valor = Number(prompt('Informe a quantia do saque: R$ '))
-            while (valor > conta._saldo) {
+            while (valor > conta._saldo || valor == "" || isNaN(valor)) {
                 console.log("\nQuantia inválida!")
                 valor = Number(prompt('Informe a quantia do saque novamente: R$ '))
             }
@@ -48,12 +48,12 @@ function escolheOpcao(opcao) {
             break;
 
         case 3:
-            console.log("\nDepositar.\n-----------------------------------------------------------")
+            console.log("\nDepositar.\n-----------------------------------------------------------\n")
             numConta = Number(prompt('Informe o número da conta: '))
             conta = bd.lerConta(numConta);
             valor = Number(prompt('Informe a quantia: R$ '))
-            while (valor <= 0) {
-                console.log("\nQuantia inválido!")
+            while (valor <= 0 || valor == "" || isNaN(valor)) {
+                console.log("\nQuantia inválida!")
                 valor = Number(prompt('Informe a quantia novamente: R$ '))
             }
             conta._saldo = conta._saldo + valor
@@ -62,7 +62,7 @@ function escolheOpcao(opcao) {
             break;
 
         case 4:
-            console.log("\nCadastrar nova conta.\n-----------------------------------------------------------");
+            console.log("\nCadastrar nova conta.\n-----------------------------------------------------------\n");
 
             const novoCliente = new Cliente();
             novoCliente.nome = prompt('Informe o nome: ');
@@ -111,7 +111,15 @@ function escolheOpcao(opcao) {
             break;
 
         case 6:
-            console.log('\nTransferir.\n-----------------------------------------------------------')
+            console.log('\nTransferir.\n-----------------------------------------------------------\n')
+            numConta1 = Number(prompt('Informe o número da sua conta: '))
+            conta1 = bd.lerConta(numConta1);
+            valor = Number(prompt('Informe a quantia: R$ '))
+            numConta2 = Number(prompt('Informe o número da outra conta: '))
+            conta2 = bd.lerConta(numConta2);
+            conta1._saldo = conta1._saldo - valor
+            conta2._saldo = conta2._saldo + valor
+            console.log("\nQuantia transferida!")
             break;
 
         case 9:
