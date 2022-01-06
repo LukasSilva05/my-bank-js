@@ -47,14 +47,11 @@ function escolheOpcao(opcao) {
                 return
             }
             valor = Number(prompt('Informe a quantia do saque: R$ '))
-            if (valor > conta._saldo || valor == "" || isNaN(valor)) {
+            if (valor == "" || isNaN(valor)) {
                 console.log("\nQuantia inválida!")
-                console.log(`\nSaldo atual: R$ ${conta._saldo}`)
                 return
             }
             conta.sacar(valor)
-            console.log("\nSaque concluído!")
-            console.log(`\nSaldo atual: R$ ${conta._saldo}`)
             break;
 
         case 3:
@@ -66,14 +63,11 @@ function escolheOpcao(opcao) {
                 return
             }
             valor = Number(prompt('Informe a quantia: R$ '))
-            if (valor <= 0 || valor == "" || isNaN(valor)) {
+            if (valor == "" || isNaN(valor)) {
                 console.log("\nQuantia inválida!")
-                console.log(`\nSaldo atual: R$ ${conta._saldo}`)
                 return
             }
             conta.depositar(valor)
-            console.log("\nQuantia Depositada!")
-            console.log(`\nSaldo atual: R$ ${conta._saldo}`)
             break;
 
         case 4:
@@ -134,7 +128,7 @@ function escolheOpcao(opcao) {
                 return
             }
             valor = Number(prompt('Informe a quantia: R$ '))
-            if (valor <= 0 || valor == "" || isNaN(valor)) {
+            if (valor == "" || isNaN(valor)) {
                 console.log("\nQuantia inválida!")
                 return
             }
@@ -145,7 +139,6 @@ function escolheOpcao(opcao) {
                 return
             }
             conta1.transferir(valor, conta2)
-            console.log("\nQuantia transferida!")
             break;
 
         case 7:

@@ -12,23 +12,44 @@ class Conta {
         if (this._saldo >= valor) {
             if (valor > 0) {
                 this._saldo = this._saldo - valor;
+                console.log("\nSaque concluído!")
+                console.log(`\nSaldo atual: R$ ${conta._saldo}`)
+            } else {
+                console.log("\nQuantia inválida!")
+                console.log(`\nSaldo atual: R$ ${conta._saldo}`)
             }
         }
     }
 
     depositar(valor) {
         if (valor <= 0) {
-            return;
+            console.log("\nQuantia inválida!")
+            console.log(`\nSaldo atual: R$ ${conta._saldo}`)
+        } else {
+            this._saldo = this._saldo + valor;
+            console.log("\nQuantia Depositada!")
+            console.log(`\nSaldo atual: R$ ${conta._saldo}`)
         }
-        this._saldo = this._saldo + valor;
+    }
+
+    transferencia(valor) {
+        if (valor <= 0) {
+            console.log("\nQuantia inválida!")
+            console.log(`\nSaldo atual: R$ ${conta._saldo}`)
+        } else {
+            this._saldo = this._saldo + valor;
+            console.log(`\nSaldo atual: R$ ${conta._saldo}`)
+        }
     }
 
     transferir(valor, contaDestino) {
         if (this._saldo <= valor || valor < 0) {
-            return;
+            console.log("\nQuantia inválida!")
+        } else {
+            this._saldo -= valor;
+            contaDestino.transferencia(valor);
+            console.log("\nQuantia transferida!")
         }
-        this._saldo -= valor;
-        contaDestino.depositar(valor);
     }
 }
 
