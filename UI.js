@@ -21,6 +21,7 @@ function exibeMenu() {
     console.log("4 - Cadastrar Conta");
     console.log("5 - Listar Contas");
     console.log("6 - Transferir");
+    console.log("7 - Apagar Conta");
     console.log("9 - Sair\n");
 }
 
@@ -30,39 +31,53 @@ function escolheOpcao(opcao) {
         case 1:
             numConta = Number(prompt('Informe o número da conta: '))
             conta = bd.lerConta(numConta);
+            if (conta == undefined) {
+                console.log(`\nEssa conta não existe!\nPor favor, informe uma conta válida.`)
+                return
+            }
             console.log(`\nSaldo da conta: R$ ${conta._saldo}`)
             break;
 
         case 2:
-            console.log("\nSacar.\n-----------------------------------------------------------\n")
+            console.log("\nSacar\n-----------------------------------------------------------\n")
             numConta = Number(prompt('Informe o número da conta: '))
             conta = bd.lerConta(numConta);
-            valor = Number(prompt('Informe a quantia do saque: R$ '))
-            while (valor > conta._saldo || valor == "" || isNaN(valor)) {
-                console.log("\nQuantia inválida!")
-                valor = Number(prompt('Informe a quantia do saque novamente: R$ '))
+            if (conta == undefined) {
+                console.log(`\nEssa conta não existe!\nPor favor,informe uma conta válida.`)
+                return
             }
-            conta._saldo = conta._saldo - valor
+            valor = Number(prompt('Informe a quantia do saque: R$ '))
+            if (valor > conta._saldo || valor == "" || isNaN(valor)) {
+                console.log("\nQuantia inválida!")
+                console.log(`\nSaldo atual: R$ ${conta._saldo}`)
+                return
+            }
+            conta.sacar(valor)
             console.log("\nSaque concluído!")
             console.log(`\nSaldo atual: R$ ${conta._saldo}`)
             break;
 
         case 3:
-            console.log("\nDepositar.\n-----------------------------------------------------------\n")
+            console.log("\nDepositar\n-----------------------------------------------------------\n")
             numConta = Number(prompt('Informe o número da conta: '))
             conta = bd.lerConta(numConta);
-            valor = Number(prompt('Informe a quantia: R$ '))
-            while (valor <= 0 || valor == "" || isNaN(valor)) {
-                console.log("\nQuantia inválida!")
-                valor = Number(prompt('Informe a quantia novamente: R$ '))
+            if (conta == undefined) {
+                console.log(`\nEssa conta não existe!\nPor favor,informe uma conta válida.`)
+                return
             }
-            conta._saldo = conta._saldo + valor
+            valor = Number(prompt('Informe a quantia: R$ '))
+            if (valor <= 0 || valor == "" || isNaN(valor)) {
+                console.log("\nQuantia inválida!")
+                console.log(`\nSaldo atual: R$ ${conta._saldo}`)
+                return
+            }
+            conta.depositar(valor)
             console.log("\nQuantia Depositada!")
             console.log(`\nSaldo atual: R$ ${conta._saldo}`)
             break;
 
         case 4:
-            console.log("\nCadastrar nova conta.\n-----------------------------------------------------------\n");
+            console.log("\nCadastrar nova conta\n-----------------------------------------------------------\n");
 
             const novoCliente = new Cliente();
             novoCliente.nome = prompt('Informe o nome: ');
@@ -81,7 +96,7 @@ function escolheOpcao(opcao) {
                 novoCliente.fone = prompt('Informe o telefone novamente: ');
             }
             novoCliente.endereco = prompt('informe o endereço: ');
-            while (novoCliente.endereco == "" || Number(novoCliente.endereco)) {
+            while (novoCliente.endereco == "") {
                 console.log("\nEsse endereço não válido!")
                 novoCliente.endereco = prompt('informe o endereço novamente: ');
             }
@@ -111,23 +126,45 @@ function escolheOpcao(opcao) {
             break;
 
         case 6:
-            console.log('\nTransferir.\n-----------------------------------------------------------\n')
+            console.log('\nTransferir\n-----------------------------------------------------------\n')
             numConta1 = Number(prompt('Informe o número da sua conta: '))
             conta1 = bd.lerConta(numConta1);
+            if (conta1 == undefined) {
+                console.log(`\nEssa conta não existe!\nPor favor,informe uma conta válida.`)
+                return
+            }
             valor = Number(prompt('Informe a quantia: R$ '))
+            if (valor <= 0 || valor == "" || isNaN(valor)) {
+                console.log("\nQuantia inválida!")
+                return
+            }
             numConta2 = Number(prompt('Informe o número da outra conta: '))
             conta2 = bd.lerConta(numConta2);
-            conta1._saldo = conta1._saldo - valor
-            conta2._saldo = conta2._saldo + valor
+            if (conta2 == undefined) {
+                console.log(`\nEssa conta não existe!\nPor favor,informe uma conta válida.`)
+                return
+            }
+            conta1.transferir(valor, conta2)
             console.log("\nQuantia transferida!")
             break;
 
+        case 7:
+            console.log('\nApagar Conta\n-----------------------------------------------------------\n')
+            numConta = Number(prompt('Informe o número da conta: '))
+            conta = bd.lerConta(numConta);
+            if (conta == undefined) {
+                console.log(`\nEssa conta não existe!\nPor favor, informe uma conta válida.`)
+                return
+            }
+            bd.apagarConta(conta)
+            console.log(`\nConta deletada!`)
+            break;
         case 9:
-            console.log('\nSaindo da aplicação. \n-----------------------------------------------------------');
+            console.log('\nSaindo da aplicação\n-----------------------------------------------------------');
             break;
 
         default:
-            console.log("\nOpção inválida.");
+            console.log("\nOpção inválida");
     }
 }
 
