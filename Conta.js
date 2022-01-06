@@ -48,7 +48,7 @@ class Conta {
         } else {
             this._saldo -= valor;
             contaDestino.transferencia(valor);
-            console.log("\nQuantia transferida!")
+            console.log("\nTransferência efetuada com sucesso!")
         }
     }
 }

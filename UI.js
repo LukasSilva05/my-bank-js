@@ -150,7 +150,7 @@ function escolheOpcao(opcao) {
                 return
             }
             bd.apagarConta(conta)
-            console.log(`\nConta deletada!`)
+            console.log(`\nConta ${numConta} deletada!`)
             break;
         case 9:
             console.log('\nSaindo da aplicação\n-----------------------------------------------------------');
