@@ -21,7 +21,8 @@ function exibeMenu() {
     console.log("4 - Cadastrar Conta");
     console.log("5 - Listar Contas");
     console.log("6 - Transferir");
-    console.log("7 - Apagar Conta");
+    console.log("7 - Informações do Cliente");
+    console.log("8 - Apagar Conta")
     console.log("9 - Sair\n");
 }
 
@@ -137,6 +138,10 @@ function escolheOpcao(opcao) {
             break;
 
         case 7:
+            console.log('\nInformações do Cliente\n-----------------------------------------------------------\n')
+            cpf = Number(prompt("Informe o CPF: "))
+            break;
+        case 8:
             console.log('\nApagar Conta\n-----------------------------------------------------------\n')
             numConta = Number(prompt('Informe o número da conta: '))
             conta = bd.lerConta(numConta);
